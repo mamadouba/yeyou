@@ -34,6 +34,9 @@ class ProductItem(Resource):
 	
 	@api.marshal_with(product_fields)
 	def get(self, id):
+		"""
+		Show one product details
+		"""
 		product = get_product(id)
 		if not product:
 			api.abort(404)
@@ -42,6 +45,9 @@ class ProductItem(Resource):
 	@api.response(201, "Product successfully updated")
 	@api.expect(product_fields, validate=True)
 	def put(self, id):
+		"""
+		Update a product
+		"""
 		product = get_product(id)
 		if not product:
 			api.abort(404)
@@ -50,6 +56,9 @@ class ProductItem(Resource):
 	
 	@api.response(204, "Product successfully deleted")
 	def delete(self, id):
+		"""
+		Delete a product
+		"""
 		product = get_product(id)
 		if not product:
 			api.abort(404)
